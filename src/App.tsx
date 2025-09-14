@@ -1,4 +1,4 @@
-import Dashboard from "./../src/pages/Dashboard";
+import Dashboard from "./pages/protected/Dashboard";
 
 function App() {
   return <Dashboard />;
