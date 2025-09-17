@@ -1,31 +1,55 @@
 // in src/App.tsx
-
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import MainLayout from './components/layout/main-layout';
+
+// Import public pages
 import PublicLandingPage from './pages/public/public_landing';
 import BusinessLandingPage from './pages/public/business_landing';
 import StoreProfilePage from './pages/public/store_profile_view';
-// Import your other pages here as you build them
-// import LoginPage from './pages/auth/login';
-// import RegistrationPage from './pages/auth/register';
+import AboutUsPage from './pages/public/aboutus';
+import BrowseStoresPage from './pages/public/browse_stores';
+
+// Import auth pages
+import LoginPage from './pages/auth/login';
+import RegistrationPage from './pages/auth/register';
+import StoreRegistrationPage from './pages/auth/store_register';
+
+// Import the protected pages
+import StoreDashboardPage from './pages/protected/store_dashboard';
+import ProtectedRoute from './components/ProtectedRoute';
+import ConsumerDashboardPage from './pages/protected/consumer_dashboard';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        {/* All your pages will be nested inside the MainLayout */}
-        <Route path="/" element={<MainLayout />}>
-          {/* The 'index' route is the default page for the parent route '/' */}
-          <Route index element={<PublicLandingPage />} />
-          <Route path="business" element={<BusinessLandingPage />} />
-          <Route path="store/:storeID" element={<StoreProfilePage />} />
-          
-          {/* Add your other pages here */}
-          {/* <Route path="login" element={<LoginPage />} /> */}
-          {/* <Route path="register" element={<RegistrationPage />} /> */}
+    <Routes>
+      {/* The MainLayout component is the parent for all pages that share the navbar */}
+      <Route path="/" element={<MainLayout />}>
+        <Route index element={<PublicLandingPage />} />
+        
+        {/* Public Routes */}
+        <Route path="business" element={<BusinessLandingPage />} />
+        <Route path="stores/:storeId" element={<StoreProfilePage />} />
+        <Route path="about" element={<AboutUsPage />} />
+        <Route path="browse-stores" element={<BrowseStoresPage />} />
+
+        {/* Authentication Routes */}
+        <Route path="login" element={<LoginPage />} />
+        <Route path="register" element={<RegistrationPage />} />
+        <Route path="store-register" element={<StoreRegistrationPage />} />
+
+        {/* Protected Routes */}
+        <Route element={<ProtectedRoute />}>
+            <Route path="store-dashboard" element={<StoreDashboardPage />} />
+            <Route path="consumer-dashboard" element={<ConsumerDashboardPage />} />
         </Route>
-      </Routes>
-    </Router>
+      </Route>
+
+
+      {/* Fallback route for unmatched paths */}
+      <Route path="*" element={<div className="p-4">404 - Page Not Found</div>}>
+        
+      </Route>
+    </Routes>
   );
 }
 

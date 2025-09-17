@@ -1,17 +1,11 @@
 // in src/hooks/useAuth.ts
-import { useState, useEffect } from 'react';
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
 
 export const useAuth = () => {
-    const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-    const [token, setToken] = useState<string | null>(null);
-
-    useEffect(() => {
-        const storedToken = localStorage.getItem('authToken');
-        if (storedToken) {
-            setIsAuthenticated(true);
-            setToken(storedToken);
-        }
-    }, []);
-
-    return { isAuthenticated, token };
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
 };

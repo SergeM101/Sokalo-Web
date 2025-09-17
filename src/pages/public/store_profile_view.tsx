@@ -1,4 +1,4 @@
-// in src/pages/public/store_profile_view.tsx
+/* in src/pages/public/store_profile_view.tsx
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Star } from "lucide-react";
 
@@ -17,11 +17,58 @@ const StoreProfilePage = () => {
         address: "748 Simbock, Yaoundé",
         category: "Supermarket",
     };
+*/
+// Dynamic store profile page that fetches and displays store details based on the store ID in the URL
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { type Store, getStoreById } from '../../services/storeService';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { Star } from "lucide-react";
+
+const StoreProfilePage = () => {
+    // useParams gets the dynamic parameters from the URL.
+    // The key 'storeId' matches the ':storeId' in your route.
+    const { storeId } = useParams<{ storeId: string }>();
+    
+    const [store, setStore] = useState<Store | null>(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        // Fetch data only if storeId is available
+        if (storeId) {
+            const fetchStoreDetails = async () => {
+                try {
+                    const data = await getStoreById(storeId);
+                    setStore(data);
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                } catch (err) {
+                    setError("Failed to load store details.");
+                } finally {
+                    setLoading(false);
+                }
+            };
+            fetchStoreDetails();
+        }
+    }, [storeId]); // This effect will re-run if the storeId in the URL changes
+
+    if (loading) {
+        return <div className="text-center p-8">Loading store...</div>;
+    }
+
+    if (error) {
+        return <div className="text-center p-8 text-red-500">{error}</div>;
+    }
+    
+    if (!store) {
+        return <div className="text-center p-8">Store not found.</div>;
+    }
 
     return (
         <div className="bg-gray-100 min-h-screen">
             <div className="container mx-auto p-4 md:p-8">
-                {/* Store Header Section */}
+                {/* Store Header Section - now uses dynamic data */}
                 <Card className="mb-8">
                     <CardHeader>
                         <CardTitle className="text-4xl">{store.officialName}</CardTitle>
@@ -34,29 +81,11 @@ const StoreProfilePage = () => {
                     </CardContent>
                 </Card>
 
-                {/* Customer Reviews Section */}
+                {/* Customer Reviews Section (will be made dynamic later) */}
                 <div>
                     <h2 className="text-3xl font-bold mb-6">Customer Reviews</h2>
-                    <div className="space-y-6">
-                        {/* We'll map over real review data here later */}
-                        <Card>
-                            <CardHeader className="flex flex-row justify-between items-center">
-                                <div>
-                                    <CardTitle className="text-xl">{sampleReview.author}</CardTitle>
-                                    <p className="text-sm text-gray-500">{sampleReview.date}</p>
-                                </div>
-                                <div className="flex items-center">
-                                    {[...Array(sampleReview.rating)].map((_, i) => (
-                                        <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
-                                    ))}
-                                </div>
-                            </CardHeader>
-                            <CardContent>
-                                <p className="text-gray-700">{sampleReview.comment}</p>
-                            </CardContent>
-                        </Card>
-                         {/* Add more sample reviews or map over an array */}
-                    </div>
+                    {/* Placeholder for when we fetch real reviews */}
+                    <p>Reviews will be displayed here.</p>
                 </div>
             </div>
         </div>

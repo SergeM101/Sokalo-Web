@@ -28,7 +28,7 @@ export const login = async (email: string, password: string): Promise<AuthRespon
   return response.data;
 };
 
-// Define the shape of the registration data
+// Define the shape of the registration data we will send to the API
 export interface RegisterData {
   userName: string;
   email: string;
@@ -40,7 +40,7 @@ export interface RegisterData {
 // Create a function to handle the register API call
 export const register = async (userData: RegisterData): Promise<AuthResponse> => {
   const response = await api.post<AuthResponse>('/register', userData);
-  // Also save the token upon successful registration
+  // If registration is successful, automatically save the token
   if (response.data.access_token) {
     localStorage.setItem('authToken', response.data.access_token);
   }

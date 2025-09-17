@@ -23,3 +23,9 @@ export const getStores = async (): Promise<Store[]> => {
   const response = await api.get<PaginatedStoresResponse>('/stores');
   return response.data.data;
 };
+
+// Add a new function to fetch a single store by its ID
+export const getStoreById = async (storeId: string): Promise<Store> => {
+  const response = await api.get<Store>(`/stores/${storeId}`);
+  return response.data;
+};

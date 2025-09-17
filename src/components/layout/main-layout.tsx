@@ -1,21 +1,16 @@
 // in src/components/layout/main-layout.tsx
 
 import { Outlet } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
-import GuestNavbar from "./guest-navbar"; // Import guest navbar
-import UserNavbar from "./user-navbar";   // Import user navbar
+import Navbar from "./navbar"; 
 
 const MainLayout = () => {
-    const { isAuthenticated } = useAuth();
-
     return (
         <div>
-            {isAuthenticated ? <UserNavbar /> : <GuestNavbar />}
+            <Navbar />
             <main>
                 <Outlet />
             </main>
         </div>
     );
 };
-
 export default MainLayout;

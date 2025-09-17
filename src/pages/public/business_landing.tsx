@@ -16,7 +16,7 @@ const BusinessLandingPage = () => {
                     From inventory management to public advertisement, SOKALO provides the tools you need to streamline your operations and grow your customer base.
                 </p>
                 <Button asChild size="lg" className="bg-accent hover:bg-green-600">
-                    <Link to="/register">Get Started Now</Link>
+                    <Link to="/store-register">Get Started Now</Link>
                 </Button>
             </section>
 
