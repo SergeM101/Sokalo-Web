@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { EmailIcon, LockIcon, UserIcon } from '@/components/icons/form-icons';
 
 const RegistrationPage = () => {
     const { login } = useAuth();
@@ -62,49 +63,112 @@ const RegistrationPage = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
-            <Card className="w-full max-w-md">
-                <CardHeader>
-                    <CardTitle className="text-2xl text-center">Create Your SOKALO Account</CardTitle>
-                    <CardDescription className="text-center">Enter your information to get started.</CardDescription>
+        <div className="min-h-screen bg-gradient-to-br from-primary/5 to-gray-100 flex items-center justify-center p-4">
+            <Card className="w-full max-w-md shadow-xl border-0 animate-fade-in hover-scale">
+                <CardHeader className="space-y-2 pb-8">
+                    <CardTitle className="text-2xl md:text-3xl font-bold text-center bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent animate-gradient">
+                        Create Your SOKALO Account
+                    </CardTitle>
+                    <CardDescription className="text-center text-base">
+                        Enter your information to get started.
+                    </CardDescription>
                 </CardHeader>
                 <CardContent>
                     <form onSubmit={handleSubmit}>
-                        <div className="grid gap-4">
-                            <div className="grid gap-2">
-                                <Label htmlFor="userName">Full Name</Label>
-                                <Input id="userName" name="userName" required onChange={handleChange} />
+                        <div className="grid gap-6">
+                            <div className="grid gap-3">
+                                <Label htmlFor="userName" className="text-base">Full Name</Label>
+                                <div className="relative">
+                                    <UserIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-500" />
+                                    <Input 
+                                        id="userName" 
+                                        name="userName" 
+                                        className="pl-10"
+                                        placeholder="John Doe"
+                                        required 
+                                        onChange={handleChange} 
+                                    />
+                                </div>
                             </div>
-                            <div className="grid gap-2">
-                                <Label htmlFor="email">Email</Label>
-                                <Input id="email" name="email" type="email" required onChange={handleChange} />
+                            <div className="grid gap-3">
+                                <Label htmlFor="email" className="text-base">Email</Label>
+                                <div className="relative">
+                                    <EmailIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-500" />
+                                    <Input 
+                                        id="email" 
+                                        name="email" 
+                                        type="email" 
+                                        className="pl-10"
+                                        placeholder="you@example.com"
+                                        required 
+                                        onChange={handleChange} 
+                                    />
+                                </div>
                             </div>
-                            <div className="grid gap-2">
-                                <Label htmlFor="password">Password</Label>
-                                <Input id="password" name="password" type="password" required onChange={handleChange} />
+                            <div className="grid gap-3">
+                                <Label htmlFor="password" className="text-base">Password</Label>
+                                <div className="relative">
+                                    <LockIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-500" />
+                                    <Input 
+                                        id="password" 
+                                        name="password" 
+                                        type="password" 
+                                        className="pl-10"
+                                        required 
+                                        onChange={handleChange} 
+                                    />
+                                </div>
                             </div>
-                            <div className="grid gap-2">
-                                <Label htmlFor="password_confirmation">Confirm Password</Label>
-                                <Input id="password_confirmation" name="password_confirmation" type="password" required onChange={handleChange} />
+                            <div className="grid gap-3">
+                                <Label htmlFor="password_confirmation" className="text-base">Confirm Password</Label>
+                                <div className="relative">
+                                    <LockIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-500" />
+                                    <Input 
+                                        id="password_confirmation" 
+                                        name="password_confirmation" 
+                                        type="password" 
+                                        className="pl-10"
+                                        required 
+                                        onChange={handleChange} 
+                                    />
+                                </div>
                             </div>
-                            <div className="grid gap-2">
-                                <Label>Account Type</Label>
+                            <div className="grid gap-3">
+                                <Label className="text-base">Account Type</Label>
                                 <Select onValueChange={handleRoleChange} defaultValue="consumer">
-                                    <SelectTrigger><SelectValue /></SelectTrigger>
+                                    <SelectTrigger className="h-11"><SelectValue /></SelectTrigger>
                                     <SelectContent className='bg-white'>
                                         <SelectItem value="consumer">Consumer</SelectItem>
                                         <SelectItem value="store_owner">Store Owner</SelectItem>
                                     </SelectContent>
                                 </Select>
                             </div>
-                            {error && <p className="text-sm text-red-500">{error}</p>}
-                            <Button type="submit" className="w-full" disabled={loading}>
-                                {loading ? 'Creating Account...' : 'Create Account'}
+                            {error && (
+                                <div className="bg-red-50 border border-red-200 rounded-lg p-3">
+                                    <p className="text-sm text-red-600">{error}</p>
+                                </div>
+                            )}
+                            <Button 
+                                type="submit" 
+                                className={`w-full transition-all duration-200 ${loading ? 'animate-pulse' : 'hover:scale-102'}`} 
+                                disabled={loading}
+                            >
+                                {loading ? (
+                                    <span className="flex items-center justify-center">
+                                        <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                        </svg>
+                                        Creating Account...
+                                    </span>
+                                ) : 'Create Account'}
                             </Button>
                         </div>
-                        <div className="mt-4 text-center text-sm">
+                        <div className="mt-6 text-center text-sm">
                             Already have an account?{' '}
-                            <Link to="/login" className="underline">Login</Link>
+                            <Link to="/login" className="text-primary hover:text-primary/80 hover:underline transition-colors">
+                                Login
+                            </Link>
                         </div>
                     </form>
                 </CardContent>

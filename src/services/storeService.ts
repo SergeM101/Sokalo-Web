@@ -7,6 +7,9 @@ export interface Store {
   officialName: string;
   address: string;
   category: string;
+  phone?: string;
+  email?: string;
+  images?: string[];
   // Add any other fields your API returns for a public store
 }
 

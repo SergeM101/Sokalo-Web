@@ -9,17 +9,13 @@ const Navbar = () => {
     const { isAuthenticated, logout } = useAuth();
     const { theme, setTheme } = useTheme();
 
-    // --- ADD THIS LINE FOR DEBUGGING ---
-    console.log("Navbar isAuthenticated:", isAuthenticated);
-    console.log("Navbar theme:", theme);
-    // ------------------------------------
-
 
     return (
-        <header className="bg-white shadow-md">
-            <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
-                <Link to="/" className="text-2xl font-bold text-blue-600">
-                    SOKALO
+        <header className="fixed w-full top-0 z-50 bg-[#063b6b]  border-b border-white/10">
+            <nav className="container mx-auto px-4 py-4 flex justify-between items-center text-white">
+                <Link to="/" className="flex items-center space-x-2">
+                    <img src="/logo.png" alt="Sokalo Logo" className="w-20 h-15" />
+                    <span className="text-2xl font-bold text-primary"></span>
                 </Link>
                 <div className="space-x-4">
                     {isAuthenticated ? (
@@ -64,6 +60,7 @@ const Navbar = () => {
                         <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
                         <span className="sr-only">Toggle theme</span>
                     </Button>
+                    
                         </>
                     )}
                 </div>

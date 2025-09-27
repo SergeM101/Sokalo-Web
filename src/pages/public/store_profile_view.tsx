@@ -28,6 +28,7 @@ import ItemsCardLayout from '@/components/layout/Items_card_layout';
 import ReviewsCardLayout from '@/components/layout/Reviews_card_layout';
 import PromotionsCardLayout from '@/components/layout/Promotions_card_layout';
 import { Star } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const StoreProfilePage = () => {
     // useParams gets the dynamic parameters from the URL.
@@ -92,11 +93,21 @@ const StoreProfilePage = () => {
                             <CardTitle className="text-2xl">{store.officialName}</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <p className="text-sm text-muted-foreground mb-2">{store.address}</p>
-                            <div className="mb-2">
-                                <span className="inline-block bg-blue-100 text-blue-800 text-sm font-semibold px-3 py-1 rounded-full">{store.category}</span>
+                            <div className="flex flex-col md:flex-row md:items-start md:gap-6">
+                                <div className="md:w-1/2">
+                                    <p className="text-sm text-muted-foreground mb-2">{store.address}</p>
+                                    <div className="mb-2">
+                                        <span className="inline-block bg-blue-100 text-blue-800 text-sm font-semibold px-3 py-1 rounded-full">{store.category}</span>
+                                    </div>
+                                    <div className="text-sm text-muted-foreground">Open: Mon - Sat, 7:00 - 19:00</div>
+                                </div>
+                                <div className="md:w-1/2 mt-4 md:mt-0">
+                                    <h4 className="text-sm font-semibold mb-2">Contact</h4>
+                                    <div className="text-sm text-muted-foreground">Phone: {store.phone ?? '+237 6 77 77 77 77'}</div>
+                                    <div className="text-sm text-muted-foreground">Email: {store.email ?? `contact@${store.officialName.replace(/\s+/g, '').toLowerCase()}.cm`}</div>
+                                </div>
                             </div>
-                            <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-2 mt-4">
                                 <Star className="w-5 h-5 text-primary" />
                                 <div>
                                     <div className="text-lg font-semibold">4.9</div>
@@ -112,8 +123,8 @@ const StoreProfilePage = () => {
                                 {slides.map((src: string, i: number) => (
                                     <CarouselItem key={i}>
                                         <div className="relative h-full">
-                                            <motion.div initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1.0, ease: 'easeOut' }} className="w-full h-full">
-                                                <img src={src} alt={`Store image ${i + 1}`} className="w-full h-full object-cover" />
+                                            <motion.div initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1.0, ease: 'easeOut' }} className="w-full h-full relative">
+                                                <img src={src} alt={`Store image ${i + 1}`} className="absolute inset-0 w-full h-full object-cover" />
                                                 <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black/30 min-w-full h-full" />
                                             </motion.div>
                                         </div>
@@ -130,8 +141,6 @@ const StoreProfilePage = () => {
                     <h2 className="text-2xl font-bold mb-4">Products Sold</h2>
                     {/* Single-column wide item rows */}
                     {/* Sample items - replace with API results later */}
-                    {/* eslint-disable-next-line @typescript-eslint/no-var-requires */}
-                    {/* Using require to load local images if present */}
                     <ItemsCardLayout items={[
                         { id: 1, title: 'Fresh Baguette', price: 250, image: '/images/item 1 bread.jpg', available: true },
                         { id: 2, title: 'Cabbage', price: 450, image: '/images/item 2 Cabbage.jpg', available: true },
@@ -152,9 +161,9 @@ const StoreProfilePage = () => {
                 <section className="mb-12">
                     <h2 className="text-2xl font-bold mb-4">Customer Reviews</h2>
                     <ReviewsCardLayout reviews={[
-                        { id: 1, author: 'Paul N.', role: 'Retailer', comment: 'SOKALO helped me digitize my inventory and attract new customers.', date: '2025-08-12', rating: 5, avatar: '/images/store profile pic 1.jpg' },
-                        { id: 2, author: 'Amina D.', role: 'Shop Owner', comment: 'The offline features saved my business during network outages.', date: '2025-07-02', rating: 5, avatar: '/images/store profile pic 2.jpg' },
-                        { id: 3, author: 'Oumar K.', role: 'Manager', comment: 'Syncing and reporting made tracking staff and cash effortless.', date: '2025-06-22', rating: 5, avatar: '/images/store profile pic 3.jpg' }
+                        { id: 1, author: 'Paul N.', role: 'Customer', comment: `I've been shopping at ${store.officialName} for months — consistent quality and quick checkout.`, date: '2025-08-12', rating: 5, avatar: '/public/user 1.jpg' },
+                        { id: 2, author: 'Amina D.', role: 'Customer', comment: `The selection and service at ${store.officialName} keep me coming back. Highly recommended.`, date: '2025-07-02', rating: 5, avatar: '/public/user 2.jpg' },
+                        { id: 3, author: 'Oumar K.', role: 'Customer', comment: `Great prices and helpful staff at ${store.officialName}. A reliable place to shop.`, date: '2025-06-22', rating: 5, avatar: '/public/user 3.jpg' }
                     ]} />
                 </section>
             </div>

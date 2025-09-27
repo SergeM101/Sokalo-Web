@@ -18,37 +18,40 @@ import StoreRegistrationPage from './pages/auth/store_register';
 import StoreDashboardPage from './pages/protected/store_dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import ConsumerDashboardPage from './pages/protected/consumer_dashboard';
+import ProtectedLayout from './components/layout/ProtectedLayout';
+import StoreSettingsPage from './pages/protected/store_settings';
 
 function App() {
   return (
     <Routes>
-      {/* The MainLayout component is the parent for all pages that share the navbar */}
+      {/* Public and Auth Routes (with MainLayout and Footer) */}
       <Route path="/" element={<MainLayout />}>
         <Route index element={<PublicLandingPage />} />
-        
-        {/* Public Routes */}
         <Route path="business" element={<BusinessLandingPage />} />
         <Route path="stores/:storeId" element={<StoreProfilePage />} />
         <Route path="about" element={<AboutUsPage />} />
         <Route path="browse-stores" element={<BrowseStoresPage />} />
-
-        {/* Authentication Routes */}
         <Route path="login" element={<LoginPage />} />
         <Route path="register" element={<RegistrationPage />} />
         <Route path="store-register" element={<StoreRegistrationPage />} />
+      </Route>
 
-        {/* Protected Routes */}
-        <Route element={<ProtectedRoute />}>
-            <Route path="store-dashboard" element={<StoreDashboardPage />} />
-            <Route path="consumer-dashboard" element={<ConsumerDashboardPage />} />
+      {/* Protected Routes (NO MainLayout, NO Footer) */}
+      <Route element={<ProtectedRoute />}>
+        <Route element={<ProtectedLayout />}>
+          <Route path="store-dashboard" element={<StoreDashboardPage />} />
+          <Route path="store-settings" element={<StoreSettingsPage />} />
+          {/* <Route path="store-items" element={<StoreItemsPage />} /> */}
+          {/* <Route path="store-reviews" element={<StoreReviewsPage />} /> */}
+
+          {/* <Route path="consumer-dashboard" element={<StoreSettingsPagePage />} /> --- IGNORE --- */}
+          <Route path="consumer-dashboard" element={<ConsumerDashboardPage />} />
+          {/* Add more protected routes here */}
         </Route>
       </Route>
 
-
       {/* Fallback route for unmatched paths */}
-      <Route path="*" element={<div className="p-4">404 - Page Not Found</div>}>
-        
-      </Route>
+      <Route path="*" element={<div className="p-4">404 - Page Not Found</div>} />
     </Routes>
   );
 }
