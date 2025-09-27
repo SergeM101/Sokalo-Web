@@ -22,10 +22,10 @@ const StoreViewsLineChart = () => {
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={sampleData}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
+            <XAxis dataKey="name" className="text-sky-400" />
+            <YAxis className="text-sky-400" />
             <Tooltip />
-            <Line type="monotone" dataKey="views" stroke="#2563EB" strokeWidth={3} dot={{ r: 5 }} />
+            <Line type="monotone" dataKey="views" stroke="slateblue" strokeWidth={3} dot={{ r: 5 }} />
           </LineChart>
         </ResponsiveContainer>
       </CardContent>

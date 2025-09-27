@@ -1,5 +1,5 @@
 //import React from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { LogOut, Home, Settings, Eye, Star, Box } from "lucide-react";
 import logo from "@/../public/logo.png";
 import { useAuth } from "@/hooks/useAuth";
@@ -23,8 +23,9 @@ const Sidebar = () => {
 		<aside className="fixed z-30 left-0 top-0 h-full w-64 bg-gradient-to-b from-gray-900 to-gray-800 shadow-xl flex flex-col border-r border-gray-700">
 			{/* Logo and Title */}
 			<div className="flex items-center gap-3 px-6 py-6 border-b border-gray-700">
-				<img src={logo} alt="Logo" className="h-8 w-8" />
-				<span className="text-xl font-bold text-white">Sokalo</span>
+				<Link to="/">
+					<img src={logo} alt="Logo" className="h-15 w-15" />
+				</Link>
 			</div>
 			<nav className="flex-1 py-6 px-2 flex flex-col gap-1">
 				{sidebarLinks.map(({ label, icon: Icon, to }) => (

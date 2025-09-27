@@ -43,19 +43,19 @@ const StoreDashboardPage = () => {
                         </div>
                     </div>
                     <div className="flex gap-4">
-                        <Card className="flex flex-col items-center justify-center px-6 py-3 bg-gradient-to-br from-blue-600/90 to-blue-400/80 text-white shadow-md border-0">
+                        <Card className="flex flex-col items-center justify-center px-6 py-3 bg-slate-800 text-white shadow-md border-0">
                             <CardTitle className="text-xs font-medium mb-1">Subscription</CardTitle>
                             <div className="flex items-center gap-2">
                                 <CalendarDays className="h-4 w-4" />
-                                <span className="text-lg font-bold">{stats.subscriptionDays} days left</span>
+                                <span className="text-lg font-bold text-sky-400">{stats.subscriptionDays} days left</span>
                             </div>
-                            <span className="text-xs mt-1">{store.subscription.plan} Plan</span>
+                            <span className="text-xs mt-1 text-sky-400">{store.subscription.plan} Plan</span>
                         </Card>
-                        <Card className="flex flex-col items-center justify-center px-6 py-3 bg-gradient-to-br from-gray-200 to-gray-100 text-gray-800 shadow-md border-0">
+                        <Card className="flex flex-col items-center justify-center px-6 py-3 bg-slate-800 text-white shadow-md border-0">
                             <CardTitle className="text-xs font-medium mb-1">No. of Syncs</CardTitle>
                             <div className="flex items-center gap-2">
                                 <Users className="h-4 w-4" />
-                                <span className="text-lg font-bold">{stats.syncCount}</span>
+                                <span className="text-lg font-bold text-sky-400">{stats.syncCount}</span>
                             </div>
                         </Card>
                     </div>
@@ -63,34 +63,34 @@ const StoreDashboardPage = () => {
 
                 {/* Stat Cards Section */}
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mb-8">
-                    <Card>
+                    <Card className="bg-slate-800 text-white">
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                             <CardTitle className="text-sm font-medium">Total Items</CardTitle>
                             <Package className="h-4 w-4 text-muted-foreground" />
                         </CardHeader>
                         <CardContent>
-                            <div className="text-2xl font-bold">{stats.totalItems}</div>
-                            <p className="text-xs text-muted-foreground">products in inventory</p>
+                            <div className="text-2xl font-bold text-sky-400">{stats.totalItems}</div>
+                            <p className="text-xs text-muted-foreground text-white">products in inventory</p>
                         </CardContent>
                     </Card>
-                    <Card>
+                    <Card className="bg-slate-800">
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                            <CardTitle className="text-sm font-medium">Average Rating</CardTitle>
+                            <CardTitle className="text-sm font-medium text-white">Average Rating</CardTitle>
                             <Star className="h-4 w-4 text-muted-foreground" />
                         </CardHeader>
                         <CardContent>
-                            <div className="text-2xl font-bold">{stats.averageRating} / 5</div>
-                            <p className="text-xs text-muted-foreground">based on all reviews</p>
+                            <div className="text-2xl font-bold text-sky-400">{stats.averageRating} / 5</div>
+                            <p className="text-xs text-muted-foreground text-white">based on all reviews</p>
                         </CardContent>
                     </Card>
-                    <Card>
+                    <Card className="bg-slate-800 text-white">
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                             <CardTitle className="text-sm font-medium">Subscription</CardTitle>
                             <TrendingUp className="h-4 w-4 text-muted-foreground" />
                         </CardHeader>
                         <CardContent>
-                            <div className="text-2xl font-bold">{stats.subscriptionDays} days</div>
-                            <p className="text-xs text-muted-foreground">left on plan</p>
+                            <div className="text-2xl font-bold text-sky-400">{stats.subscriptionDays} days</div>
+                            <p className="text-xs text-muted-foreground text-white">left on plan</p>
                         </CardContent>
                     </Card>
                 </div>
@@ -104,9 +104,9 @@ const StoreDashboardPage = () => {
 
                             {/* Recent Activity */}
                             <div className="lg:col-span-1">
-                                <Card className="h-full">
+                                <Card className="h-full bg-slate-800 text-white">
                                     <CardHeader>
-                                        <CardTitle className="flex items-center gap-2">
+                                        <CardTitle className="flex items-center gap-2 text-sky-400">
                                             <Activity className="h-5 w-5" />
                                             Recent Activity
                                         </CardTitle>
@@ -115,8 +115,8 @@ const StoreDashboardPage = () => {
                                         <Table>
                                             <TableHeader>
                                                 <TableRow>
-                                                    <TableHead>Description</TableHead>
-                                                    <TableHead>Type</TableHead>
+                                                    <TableHead className="text-sky-300">Description</TableHead>
+                                                    <TableHead className="text-sky-300">Type</TableHead>
                                                 </TableRow>
                                             </TableHeader>
                                             <TableBody>

@@ -27,7 +27,7 @@ const StatsChart = () => {
             <XAxis dataKey="name" />
             <YAxis />
             <Tooltip />
-            <Bar dataKey="sales" fill="#2563EB" />
+            <Bar dataKey="sales" fill="slateblue" />
           </BarChart>
         </ResponsiveContainer>
       </CardContent>

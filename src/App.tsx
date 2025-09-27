@@ -18,6 +18,8 @@ import StoreRegistrationPage from './pages/auth/store_register';
 import StoreDashboardPage from './pages/protected/store_dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import ConsumerDashboardPage from './pages/protected/consumer_dashboard';
+import StoreItemsPage from './pages/protected/store_items';
+// import StoreReviewsPage from './pages/protected/store_reviews';
 import ProtectedLayout from './components/layout/ProtectedLayout';
 import StoreSettingsPage from './pages/protected/store_settings';
 
@@ -41,7 +43,7 @@ function App() {
         <Route element={<ProtectedLayout />}>
           <Route path="store-dashboard" element={<StoreDashboardPage />} />
           <Route path="store-settings" element={<StoreSettingsPage />} />
-          {/* <Route path="store-items" element={<StoreItemsPage />} /> */}
+          <Route path="store-items" element={<StoreItemsPage />} /> 
           {/* <Route path="store-reviews" element={<StoreReviewsPage />} /> */}
 
           {/* <Route path="consumer-dashboard" element={<StoreSettingsPagePage />} /> --- IGNORE --- */}

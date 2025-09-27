@@ -38,10 +38,10 @@ const StoreSettingsPage = () => {
         <div className="bg-gray-50 min-h-screen w-full">
             <div className="container mx-auto p-4 md:p-8 max-w-3xl">
                 {/* Profile Card */}
-                <Card className="mb-8">
+                <Card className="mb-8 bg-slate-800 text-white">
                     <CardHeader className="flex flex-row items-center justify-between pb-2">
                         <div>
-                            <CardTitle className="text-xl">Custom's Store Profile</CardTitle>
+                            <CardTitle className="text-xl text-sky-400">Custom's Store Profile</CardTitle>
                             <CardDescription>Update your store's public information here.</CardDescription>
                         </div>
                         <div className="flex gap-2">
@@ -53,20 +53,20 @@ const StoreSettingsPage = () => {
                         <form className="grid gap-6">
                             <div className="grid gap-2 md:grid-cols-2">
                                 <div className="grid gap-2">
-                                    <Label htmlFor="officialName">Official Store Name</Label>
-                                    <Input id="officialName" defaultValue={storeData.officialName} />
+                                    <Label htmlFor="officialName" className="text-sky-400">Official Store Name</Label>
+                                    <Input id="officialName" className="bg-white text-slate-800" defaultValue={storeData.officialName} />
                                 </div>
                                 <div className="grid gap-2">
-                                    <Label htmlFor="contactEmail">Contact Email</Label>
-                                    <Input id="contactEmail" type="email" defaultValue={storeData.contactEmail} />
+                                    <Label htmlFor="contactEmail" className="text-sky-400">Contact Email</Label>
+                                    <Input id="contactEmail" type="email" className="bg-white text-slate-800" defaultValue={storeData.contactEmail} />
                                 </div>
                                 <div className="grid gap-2">
-                                    <Label htmlFor="contactPhone">Contact Phone</Label>
-                                    <Input id="contactPhone" defaultValue={storeData.contactPhone} />
+                                    <Label htmlFor="contactPhone" className="text-sky-400">Contact Phone</Label>
+                                    <Input id="contactPhone" className="bg-white text-slate-800" defaultValue={storeData.contactPhone} />
                                 </div>
                                 <div className="grid gap-2">
-                                    <Label htmlFor="address">Address</Label>
-                                    <Input id="address" defaultValue={storeData.address} />
+                                    <Label htmlFor="address" className="text-sky-400">Address</Label>
+                                    <Input id="address" className="bg-white text-slate-800" defaultValue={storeData.address} />
                                 </div>
                             </div>
                             {/* Store Photos Upload */}
@@ -103,7 +103,7 @@ const StoreSettingsPage = () => {
                 </Card>
 
                 {/* Sync Key Section */}
-                <Card className="mb-8">
+                <Card className="mb-8 bg-slate-800 text-white">
                     <CardHeader>
                         <CardTitle>Sync Decryption Key</CardTitle>
                     </CardHeader>
@@ -116,7 +116,7 @@ const StoreSettingsPage = () => {
                 </Card>
 
                 {/* Modify Items List Section */}
-                <Card className="mb-8">
+                <Card className="mb-8 bg-slate-800 text-white">
                     <CardContent className="flex flex-col md:flex-row items-center justify-between gap-4">
                         <div className="text-lg font-medium">Modify Items List</div>
                         <Button variant="secondary" className="flex items-center gap-2">
@@ -127,7 +127,7 @@ const StoreSettingsPage = () => {
                 </Card>
 
                 {/* Promotion/Deal Section */}
-                <Card className="mb-8">
+                <Card className="mb-8 bg-slate-800 text-white">
                     <CardContent className="flex flex-col md:flex-row items-center justify-between gap-4">
                         <div className="text-lg font-medium">Make A Promotion or Deal</div>
                         <Button variant="secondary" className="flex items-center gap-2">
@@ -137,7 +137,7 @@ const StoreSettingsPage = () => {
                 </Card>
 
                 {/* Subscription Plan Section */}
-                <Card>
+                <Card className="bg-slate-800 text-white">
                     <CardContent className="flex flex-col md:flex-row items-center justify-between gap-4">
                         <div className="flex flex-col gap-1">
                             <div className="text-lg font-medium">Current Subscription Plan</div>
