@@ -78,7 +78,8 @@ const LoginPage = () => {
               {/* Display the error message if it exists */}
               {error && <p className="text-sm text-red-500">{error}</p>}
               {/* Disable the button when loading */}
-              <Button 
+              <Button
+                id="login-button"
                 type="submit" 
                 className={`w-full transition-all duration-200 ${loading ? 'animate-pulse' : 'hover:scale-102'}`} 
                 disabled={loading}
